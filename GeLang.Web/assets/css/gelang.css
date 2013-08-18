@@ -1,0 +1,75 @@
+﻿@font-face {
+  font-family: 'segoeui';
+  src: url('../font/segoe-ui.eot');
+  src: url('../font/segoe-ui.eot?#iefix') format('embedded-opentype'), url('../font/segoe-ui.woff') format('woff'), url('../font/segoe-ui.ttf') format('truetype'), url('../font/segoe-ui.svg#segoe-ui') format('svg');
+}
+body {
+  margin: 0;
+  font-family: 'segoeui';
+}
+.gelang {
+  background-color: #00331d;
+}
+.gelang .modules {
+  position: absolute;
+  color: #ffffff;
+  top: 0;
+  display: none;
+}
+.gelang .modules ul li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 3px 6px;
+}
+.gelang .modules ul li:hover {
+  font-weight: bold;
+}
+.gelang .modules ul li.selected {
+  font-weight: bold;
+  cursor: default;
+}
+.gelang .header {
+  margin: 0;
+  height: 60px;
+}
+.gelang .body {
+  background-color: #ffffff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  margin: 0;
+}
+.gelang .body .leftmenu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  width: 200px;
+  background-color: #99ffd3;
+}
+.gelang .body .leftmenu ul {
+  margin: 0;
+  padding: 0;
+  padding-top: 40px;
+}
+.gelang .body .leftmenu ul li {
+  cursor: pointer;
+  padding: 6px 12px;
+  display: block;
+}
+.gelang .body .leftmenu ul li:hover {
+  /*font-weight: bold;*/
+
+  background-color: #ccffe9;
+}
+.gelang .body .leftmenu ul li.selected {
+  /*font-weight: bold;*/
+
+  background-color: #ffffff;
+  border-left: 4px solid #00663a;
+  padding-left: 8px;
+  cursor: default;
+}

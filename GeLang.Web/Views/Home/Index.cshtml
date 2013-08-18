@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Index</title>
+    <link href="~/assets/css/gelang.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="pnlContent"></div>
+    <script src="~/assets/js/vendors/jquery-2.0.3.js"></script>
+    <script src="~/assets/js/gelang.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GeLang.baseUrl = "@Url.Content("~/")";
+
+            var options = {
+                modules: [
+                    { name: "module_a", text: "Module A" },
+                    {
+                        name: "module_b", text: "Module B", menus: [
+                            { name: "modb_menu_a", text: "Module B Menu A" },
+                            { name: "modb_menu_b", text: "Module B Menu B" },
+                            { name: "modb_menu_c", text: "Module B Menu C" },
+                            { name: "modb_menu_d", text: "Module B Menu D" },
+                            { name: "modb_menu_e", text: "Module B Menu E" },
+                        ]
+                    },
+                    {
+                        name: "module_c", text: "Module C", menus: [
+                            { name: "modc_menu_a", text: "Module C Menu A" },
+                            { name: "modc_menu_b", text: "Module C Menu B" },
+                            { name: "modc_menu_c", text: "Module C Menu C" },
+                            { name: "modc_menu_d", text: "Module C Menu D" },
+                            { name: "modc_menu_e", text: "Module C Menu E" },
+                        ]
+                    },
+                    {
+                        name: "module_d", text: "Module D", menus: [
+                            { name: "modd_menu_a", text: "Module D Menu A" },
+                            { name: "modd_menu_b", text: "Module D Menu B" },
+                            { name: "modd_menu_c", text: "Module D Menu C" },
+                            { name: "modd_menu_d", text: "Module D Menu D" },
+                            { name: "modd_menu_e", text: "Module D Menu E" },
+                        ]
+                    },
+                    { name: "module_e", text: "Module E" },
+                ],
+            }
+
+            var layout = new GeLang.Layout(options);
+            layout.render();
+
+            layout.onModuleChanged(function (e, data, menus) {
+                console.log("module changed to : ", data, menus);
+            });
+
+            layout.onMenuChanged(function (e, data) {
+                console.log("menu changed to : ", data);
+            });
+        });
+    </script>
+</body>
+</html>

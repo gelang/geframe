@@ -1,0 +1,91 @@
+﻿@font-face {
+    font-family: 'segoeui';
+    src: url('../font/segoe-ui.eot');
+    src: url('../font/segoe-ui.eot?#iefix') format('embedded-opentype'), url('../font/segoe-ui.woff') format('woff'), url('../font/segoe-ui.ttf') format('truetype'), url('../font/segoe-ui.svg#segoe-ui') format('svg');
+}
+
+body {
+    margin: 0;
+    font-family: 'segoeui';
+}
+
+.gelang {
+    @base-color: #00ff90;
+    @color-alt1: #007acc;
+
+    background-color: darken(@base-color, 40%);
+
+    .modules {
+        position: absolute;
+        color: lighten(@base-color, 70%);
+        top: 0;
+		display: none;
+
+        ul {
+            li {
+                display: inline-block;
+                cursor: pointer;
+                padding: 3px 6px;
+
+                &:hover {
+                    font-weight: bold;
+                }
+
+                &.selected {
+                    font-weight: bold;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    .header {
+        margin: 0;
+        height: 60px;
+    }
+
+    .body {
+        background-color: lighten(@base-color, 50%);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px;
+        bottom: 0;
+        margin: 0;
+
+        .leftmenu {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            width: 200px;
+            background-color: lighten(@base-color, 30%);
+
+            ul {
+                margin: 0;
+                padding: 0;
+                padding-top: 40px;
+
+                li {
+                    cursor: pointer;
+                    padding: 6px 12px;
+                    display: block;
+
+                    &:hover {
+                        /*font-weight: bold;*/
+                        background-color: lighten(@base-color, 40%);
+                    }
+
+                    &.selected {
+                        /*font-weight: bold;*/
+                        background-color: lighten(@base-color, 50%);
+                        border-left: 4px solid darken(@base-color, 30%);
+                        padding-left: 8px;
+                        cursor: default;
+                    }
+                }
+            }
+        }
+    }
+}

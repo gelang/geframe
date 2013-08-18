@@ -1,0 +1,3 @@
+﻿GeLang.Crud = {
+
+}
