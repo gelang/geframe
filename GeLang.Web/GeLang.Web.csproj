@@ -136,7 +136,9 @@
       <DependentUpon>gelang.js</DependentUpon>
     </Content>
     <Content Include="assets\js\vendors\jquery-2.0.3.js" />
-    <Content Include="assets\js\vendors\jquery-2.0.3.min.js" />
+    <Content Include="assets\js\vendors\jquery-2.0.3.min.js">
+      <DependentUpon>jquery-2.0.3.js</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -155,9 +157,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\js\vendors\jquery-2.0.3.min.js.map" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +169,11 @@
     <Content Include="assets\font\segoe-ui.svgz" />
     <Content Include="assets\font\segoe-ui.ttf" />
     <Content Include="assets\font\segoe-ui.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\js\vendors\jquery-2.0.3.min.js.map">
+      <DependentUpon>jquery-2.0.3.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
