@@ -8,21 +8,20 @@ GeLang.Layout = function (options) {
     "use strict";
 
     var _this = this;
-    var rendered = false;
+    var isRendered = false;
     var configured = false;
     var menuMap = {};
     var module = "";
     var menu = "";
     var template = "<div class=\"page\">" +
                    "<div class=\"header\">" +
-                   "<div class=\"header-content\">" +
                    "<div class=\"brand\">" +
-                   "<div class=\"title\"></div><div class=\"separator\"></div><div class=\"nav-module\"></div>" +
+                   "<div class=\"title\"></div><div class=\"separator\"></div><div class=\"navigation\"></div>" +
                    "</div>" +
                    "<div class=\"module\"></div>" +
                    "<div class=\"toolbar\"></div>" +
                    "<div class=\"profile\"></div>" +
-                   "</div></div>" +
+                   "</div>" +
                    "<div class=\"body\">" +
                    "<div class=\"leftpanel\"><div class=\"leftmenu\"></div></div>" +
                    "<div class=\"mainpanel\">" +
@@ -33,7 +32,7 @@ GeLang.Layout = function (options) {
                    "</div>";
 
     this.render = function (selector) {
-        if (rendered) {
+        if (isRendered) {
             console.log("already rendered...!");
             return;
         }
@@ -45,9 +44,11 @@ GeLang.Layout = function (options) {
 
         var moduleChanged = [];
         var menuChanged = [];
+        var rendered = [];
 
         this.onModuleChanged = function (callback) { moduleChanged.push(callback); };
         this.onMenuChanged = function (callback) { menuChanged.push(callback); };
+        this.onRendered = function (callback) { menuChanged.push(callback); };
 
         this.onHashChanged(function (e, data) {
             var hashs = data.split("/");
@@ -63,7 +64,7 @@ GeLang.Layout = function (options) {
 
                         if (menu !== (hashs[2] || "")) {
                             for (var i = 0; i < menuChanged.length; i++) {
-                                menuChanged[i](e, (hashs[2] || ""));
+                                menuChanged[i](e, { module: (hashs[1] || ""), menu: (hashs[2] || "") });
                             }
                             menu = hashs[2];
                         }
@@ -79,12 +80,13 @@ GeLang.Layout = function (options) {
             selected.parent().children().removeClass("selected");
             selected.addClass("selected");
 
-            $(selector + " .page .header .header-content .brand .title").text(selected.text());
+            $(selector + " .page .header .brand .title").text(selected.text());
         });
         this.onMenuChanged(function (e, data) {
-            var selected = $(selector + " .page .body .leftmenu li[data-id=\"" + data + "\"]");
-            selected.parent().children().removeClass("selected");
-            selected.addClass("selected");
+            if (_this.loadMenu != undefined) {
+                var selected = $(selector + " .page .body .leftmenu li[data-id=\"" + data.menu + "\"]");
+                _this.loadMenu(selected, data);
+            }
         });
 
         // fixed screen height
@@ -92,7 +94,10 @@ GeLang.Layout = function (options) {
         $(window).resize(function () { _this.fixedLayout(); });
 
         // update status rendered
-        rendered = true;
+        isRendered = true;
+        for (var i = 0; i < rendered.length; i++) {
+            rendered[i]();
+        }
     }
 
     this.configure = function (selector) {
@@ -153,7 +158,7 @@ GeLang.Layout = function (options) {
     this.renderModules = function (selector, data) {
         var html = "";
         $.each(data, function (idx, val) {
-            html += "<li class=\"menu\" data-id=\"" + val.name + "\">" + val.text + "</li>";
+            html += "<li class=\"menu\" data-id=\"" + val.name + "\"><label>" + val.text + "</label></li>";
             menuMap[val.name] = val.menus;
         });
         $(selector + " .page .modules").html("<ul>" + html + "</ul>");
@@ -162,19 +167,19 @@ GeLang.Layout = function (options) {
             window.location.href = "#lnk/" + ($(this).data("id") || "");
         });
 
-        $(".page .header .header-content .brand .nav-module").on("click", function () {
+        $(".page .header .brand .navigation").on("click", function () {
             $(".page .modules").slideDown("fast");
         });
 
         $(".page .body").on("click", function () {
             $(".page .modules").slideUp("fast");
-            $(".page .header .header-content .panel.panel-userinfo").slideUp("fast");
+            $(".page .header .panel.panel-userinfo").slideUp("fast");
         });
         $(".page .modules .menu").on("click", function () {
             $(".page .modules").slideUp("fast");
             var self = $(this);
             setTimeout(function () {
-                window.location = self.data("url");
+                //window.location.href = "#lnk/" + ($(this).data("id") || "");
             }, 250);
         });
     };
@@ -182,7 +187,7 @@ GeLang.Layout = function (options) {
     this.renderMenus = function (selector, data) {
         var html = "";
         $.each(data, function (idx, val) {
-            html += "<li data-id=\"" + val.name + "\">" + val.text + "</li>";
+            html += "<li data-id=\"" + val.name + "\"><label>" + val.text + "</label></li>";
         });
         $(selector + " .page .body .leftmenu").html("<ul>" + html + "</ul>");
 
@@ -190,4 +195,15 @@ GeLang.Layout = function (options) {
             window.location.href = "#lnk/" + (module || "") + "/" + ($(this).data("id") || "");
         });
     };
+}
+
+GeLang.Layout.prototype.loadMenu = function (selected, data) {
+    var content = $(".page .body .mainpanel .maincontent");
+    var url = GeLang.baseUrl + data.module + "/" + data.menu;
+    content.load(url, function (response, status, xhr) {
+        if (status === "success") {
+            selected.parent().children().removeClass("selected");
+            selected.addClass("selected");
+        }
+    });
 }

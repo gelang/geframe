@@ -112,7 +112,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -129,7 +131,26 @@
     <Content Include="assets\css\gelang.min.css">
       <DependentUpon>gelang.less</DependentUpon>
     </Content>
+    <Content Include="assets\css\vendor\animate.css" />
+    <Content Include="assets\css\vendor\animate.delay.css" />
+    <Content Include="assets\css\vendor\foundation.css" />
+    <Content Include="assets\css\vendor\jquery.ui.core.css" />
+    <Content Include="assets\css\vendor\jquery.ui.datepicker.css" />
+    <Content Include="assets\css\vendor\jquery.ui.spinner.css" />
+    <Content Include="assets\css\vendor\normalize.css" />
+    <Content Include="assets\css\vendor\select2.css" />
+    <Content Include="assets\css\vendor\select2.png" />
+    <Content Include="assets\css\vendor\spinner.gif" />
     <Content Include="assets\font\segoe-ui.svg" />
+    <Content Include="assets\js\app\tmpl\arbkt.js" />
+    <Content Include="assets\js\app\tmpl\receipt.js" />
+    <Content Include="assets\js\app\tmpl\regis2.js" />
+    <Content Include="assets\js\app\tmpl\regis1.js" />
+    <Content Include="assets\js\app\tmpl\demo1.js" />
+    <Content Include="assets\js\gelang.widget.js" />
+    <Content Include="assets\js\Copy of gelang.min.js">
+      <DependentUpon>gelang.widget.js</DependentUpon>
+    </Content>
     <Content Include="assets\js\gelang.crud.js" />
     <Content Include="assets\js\gelang.js" />
     <Content Include="assets\js\gelang.min.js">
@@ -173,6 +194,11 @@
   <ItemGroup>
     <Content Include="assets\js\vendors\jquery-2.0.3.min.js.map">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\js\Copy of gelang.min.js.map">
+      <DependentUpon>gelang.widget.js</DependentUpon>
     </Content>
   </ItemGroup>
   <PropertyGroup>

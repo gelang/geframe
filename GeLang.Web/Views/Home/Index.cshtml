@@ -13,14 +13,23 @@
 </head>
 <body>
     <div id="pnlContent"></div>
-    <script src="~/assets/js/vendors/jquery-2.0.3.js"></script>
+    <script src="~/assets/js/vendors/jquery-2.0.3.js" type="text/javascript"></script>
     <script src="~/assets/js/gelang.min.js"></script>
+    <script src="~/assets/js/gelang.widget.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             GeLang.baseUrl = "@Url.Content("~/")";
 
             var options = {
                 modules: [
+                    {
+                        name: "tmpl", text: "Template", menus: [
+                            { name: "regis1", text: "Registration 001" },
+                            { name: "regis2", text: "Registration 002" },
+                            { name: "receipt", text: "Kwitansi" },
+                            { name: "arbkt", text: "Bank Kas Terima" },
+                        ]
+                    },
                     { name: "module_a", text: "Module A" },
                     {
                         name: "module_b", text: "Module B", menus: [
@@ -55,14 +64,6 @@
 
             var layout = new GeLang.Layout(options);
             layout.render();
-
-            //layout.onModuleChanged(function (e, data, menus) {
-            //    console.log("module changed to : ", data, menus);
-            //});
-
-            //layout.onMenuChanged(function (e, data) {
-            //    console.log("menu changed to : ", data);
-            //});
         });
     </script>
 </body>
