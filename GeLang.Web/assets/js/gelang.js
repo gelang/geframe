@@ -1,6 +1,7 @@
 ﻿var GeLang = {
     version: "1.0.0",
-    baseUrl: "/"
+    baseUrl: "/",
+    themes: "gelang"
 }
 
 GeLang.Layout = function (options) {
@@ -12,6 +13,24 @@ GeLang.Layout = function (options) {
     var menuMap = {};
     var module = "";
     var menu = "";
+    var template = "<div class=\"page\">" +
+                   "<div class=\"header\">" +
+                   "<div class=\"header-content\">" +
+                   "<div class=\"brand\">" +
+                   "<div class=\"title\"></div><div class=\"separator\"></div><div class=\"nav-module\"></div>" +
+                   "</div>" +
+                   "<div class=\"module\"></div>" +
+                   "<div class=\"toolbar\"></div>" +
+                   "<div class=\"profile\"></div>" +
+                   "</div></div>" +
+                   "<div class=\"body\">" +
+                   "<div class=\"leftpanel\"><div class=\"leftmenu\"></div></div>" +
+                   "<div class=\"mainpanel\">" +
+                   "<div class=\"breadcrumbs\"></div><div class=\"pageheader\"></div><div class=\"maincontent\"></div>" +
+                   "</div></div>" +
+                   "<div class=\"modules\"></div>" +
+                   "<div class=\"footer\"></div>" +
+                   "</div>";
 
     this.render = function (selector) {
         if (rendered) {
@@ -56,19 +75,21 @@ GeLang.Layout = function (options) {
             var menus = menuMap[data];
             _this.renderMenus(selector, menus || []);
 
-            var selected = $(selector + ".gelang .modules li[data-id=\"" + data + "\"]");
+            var selected = $(selector + " .page .modules li[data-id=\"" + data + "\"]");
             selected.parent().children().removeClass("selected");
             selected.addClass("selected");
+
+            $(selector + " .page .header .header-content .brand .title").text(selected.text());
         });
         this.onMenuChanged(function (e, data) {
-            var selected = $(selector + ".gelang .body .leftmenu li[data-id=\"" + data + "\"]");
+            var selected = $(selector + " .page .body .leftmenu li[data-id=\"" + data + "\"]");
             selected.parent().children().removeClass("selected");
             selected.addClass("selected");
         });
 
         // fixed screen height
-        //this.fixedLayout();
-        //$(window).resize(function () { _this.fixedLayout(); });
+        this.fixedLayout();
+        $(window).resize(function () { _this.fixedLayout(); });
 
         // update status rendered
         rendered = true;
@@ -83,21 +104,10 @@ GeLang.Layout = function (options) {
         this.onSave = options.onSave;
         this.onDelete = options.onDelete;
 
-        var html = "<div class=\"header\">" +
-                     "<div class=\"module\"></div>" +
-                     "<div class=\"toolbar\"></div>" +
-                   "</div>" +
-                   "<div class=\"body\">" +
-                     "<div class=\"leftpanel\"><div class=\"leftmenu\"></div></div>" +
-                     "<div class=\"mainpanel\">" +
-                       "<div class=\"breadcrumbs\"></div><div class=\"pageheader\"></div><div class=\"maincontent\"></div>" +
-                     "</div>" +
-                   "</div>" +
-                   "<div class=\"modules\"></div>" +
-                   "<div class=\"footer\"></div>"
+        var html = template;
 
         $(selector).empty();
-        $(selector).addClass("gelang");
+        $(selector).addClass(GeLang.themes);
         $(selector).html(html);
 
         // tracking on changing hash
@@ -133,24 +143,39 @@ GeLang.Layout = function (options) {
 
     this.fixedLayout = function () {
         var screenHeight = $(window).height();
-        var bodyHeight = (screenHeight - $(".gelang .header").height());
-        //$(".gelang .body").css({
-        //    height: bodyHeight + "px"
-        //});
-        console.log($(".gelang .header").height());
-        console.log(bodyHeight);
+        var bodyHeight = (screenHeight - $(".page .header").height());
+
+        $(".page .body").css({
+            height: bodyHeight + "px"
+        });
     }
 
     this.renderModules = function (selector, data) {
         var html = "";
         $.each(data, function (idx, val) {
-            html += "<li data-id=\"" + val.name + "\">" + val.text + "</li>";
+            html += "<li class=\"menu\" data-id=\"" + val.name + "\">" + val.text + "</li>";
             menuMap[val.name] = val.menus;
         });
-        $(selector + ".gelang .modules").html("<ul>" + html + "</ul>");
+        $(selector + " .page .modules").html("<ul>" + html + "</ul>");
 
-        $(selector + ".gelang .modules li").on("click", function () {
+        $(selector + " .page .modules li").on("click", function () {
             window.location.href = "#lnk/" + ($(this).data("id") || "");
+        });
+
+        $(".page .header .header-content .brand .nav-module").on("click", function () {
+            $(".page .modules").slideDown("fast");
+        });
+
+        $(".page .body").on("click", function () {
+            $(".page .modules").slideUp("fast");
+            $(".page .header .header-content .panel.panel-userinfo").slideUp("fast");
+        });
+        $(".page .modules .menu").on("click", function () {
+            $(".page .modules").slideUp("fast");
+            var self = $(this);
+            setTimeout(function () {
+                window.location = self.data("url");
+            }, 250);
         });
     };
 
@@ -159,9 +184,9 @@ GeLang.Layout = function (options) {
         $.each(data, function (idx, val) {
             html += "<li data-id=\"" + val.name + "\">" + val.text + "</li>";
         });
-        $(selector + ".gelang .body .leftmenu").html("<ul>" + html + "</ul>");
+        $(selector + " .page .body .leftmenu").html("<ul>" + html + "</ul>");
 
-        $(selector + ".gelang .body .leftmenu li").on("click", function () {
+        $(selector + " .page .body .leftmenu li").on("click", function () {
             window.location.href = "#lnk/" + (module || "") + "/" + ($(this).data("id") || "");
         });
     };

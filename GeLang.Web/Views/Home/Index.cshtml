@@ -8,6 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Index</title>
+    <link href="~/assets/css/vendor/foundation.css" rel="stylesheet" />
     <link href="~/assets/css/gelang.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -55,13 +56,13 @@
             var layout = new GeLang.Layout(options);
             layout.render();
 
-            layout.onModuleChanged(function (e, data, menus) {
-                console.log("module changed to : ", data, menus);
-            });
+            //layout.onModuleChanged(function (e, data, menus) {
+            //    console.log("module changed to : ", data, menus);
+            //});
 
-            layout.onMenuChanged(function (e, data) {
-                console.log("menu changed to : ", data);
-            });
+            //layout.onMenuChanged(function (e, data) {
+            //    console.log("menu changed to : ", data);
+            //});
         });
     </script>
 </body>
