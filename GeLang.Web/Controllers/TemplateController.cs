@@ -8,11 +8,6 @@ namespace GeLang.Web.Controllers
 {
     public class TemplateController : BaseController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public string Demo()
         {
             return HtmlRender("pnlControl", "tmpl/demo1.js");

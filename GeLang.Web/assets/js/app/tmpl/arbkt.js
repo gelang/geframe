@@ -5,10 +5,10 @@
         panels: [
             {
                 items: [
-                    { text: "Tipe", type: "select", cls: "span4 full" },
+                    { text: "Tipe", type: "select", cls: "span4" },
+                    { text: "Profit Center", type: "select", cls: "span4" },
                     { text: "No Kwitansi", cls: "span4", readonly: true },
                     { text: "Tgl Kwitansi", cls: "span4" },
-                    { text: "Profit Center", type: "select", cls: "span4 full" },
                     { text: "Tgl GL", cls: "span4" },
                     { text: "Tgl Jatuh Tempo", cls: "span4" },
                     { text: "Pelanggan", type: "controls", items: [{ name: "CustCode", cls: "span2" }, { name: "CustName", cls: "span6", readonly: true }] },

@@ -28,7 +28,7 @@
         content.html(html_widget);
     };
 
-    this.generateForm = function (items) {
+    this.generateForm = function (items, prefix) {
         var html = "";
         var self = this;
 
@@ -37,10 +37,10 @@
             html += "<div" + cls + ">" + self.generateLabel(item) + self.generateInput(item) + "</div>";
         });
 
-        return "<form class=\"form\">" + html + "</form>";
+        return "<form class=\"form\">" + (prefix || "") + html + "</form>";
     };
 
-    this.generatePanel = function (items) {
+    this.generatePanel = function (items, prefix) {
         var html = "";
         var self = this;
 
@@ -49,15 +49,21 @@
             html += "<div" + cls + ">" + self.generateLabel(item) + self.generateInput(item) + "</div>";
         });
 
-        return "<div class=\"panel\">" + html + "</div>";
+        return "<div class=\"panel\">" + (prefix || "") + html + "</div>";
     };
 
     this.generatePanels = function (panels) {
-        var html = "";
+        var html = "", prefix = "";
         var self = this;
 
         $.each(panels || [], function (idx, item) {
-            html += ((idx > 0) ? "<div class=\"divider\"></div>" : "") + self.generatePanel(item.items);
+            if (item.title !== undefined) {
+                prefix += "<div class=\"subtitle\">" + item.title + "</div>"
+            }
+            else if (idx > 0) {
+                prefix += "<div class=\"divider\"></div>"
+            }
+            html += self.generatePanel(item.items, prefix);
         });
 
         return html;
@@ -71,14 +77,15 @@
     };
 
     this.generateInput = function (item) {
-        var required = ((item.required || false) ? " required='required'" : "");
-        var readonly = ((item.readonly || false) ? " readonly='readonly'" : "");
+        var placeHolder = " placeHolder=\"" + ((item.placeHolder || item.text) || "") + "\"";
+        var required = ((item.required || false) ? " required=\"required\"" : "");
+        var readonly = ((item.readonly || false) ? " readonly=\"readonly\"" : "");
         var type = item.type || "text";
         var html = "";
 
         switch (type) {
             case "textarea":
-                html = "<textarea name='" + item.name + "' id='" + item.name + "' " + required + readonly + "></textarea>";
+                html = "<textarea name='" + item.name + "' id='" + item.name + "' " + placeHolder + required + readonly + "></textarea>";
                 break;
             case "buttons":
                 var items = item.items || [];
@@ -89,12 +96,12 @@
                 });
                 break;
             case "select":
-                html = "<select name='" + item.name + "' id='" + item.name + "' " + required + ">" +
-                       "<option>" + item.opt_text + "</option>" + this.generateOption(item) +
+                html = "<select name='" + item.name + "' id='" + item.name + "' " + placeHolder + required + readonly + ">" +
+                       "<option>" + (item.opt_text || "[Select One]") + "</option>" + this.generateOption(item) +
                        "</select>";
             case "dropdown":
                 html = "<select name='" + item.name + "' id='" + item.name + "' " + required + ">" +
-                       "<option>" + item.opt_text + "</option>" + this.generateOption(item) +
+                       "<option>" + (item.opt_text || "[Select One]") + "</option>" + this.generateOption(item) +
                        "</select>";
                 break;
             case "controls":
@@ -109,11 +116,12 @@
                 html = "<div class=\"panel\"></div>";
                 break;
             default:
-                html = "<input type='" + type + "' name='" + item.name + "' id='" + item.name + "'" + required + readonly + "/>";
+                html = "<input type='" + type + "' name='" + item.name + "' id='" + item.name + "'" + placeHolder + required + readonly + "/>";
                 break;
         }
 
-        return "<div>" + html + "</div>";
+        var span = (item.span || false) ? " class=\"span\"" : "";
+        return "<div" + span + ">" + html + "</div>";
     };
 
     this.generateOption = function (item) {
@@ -128,4 +136,9 @@
     }
 };
 
-
+GeLang.Widget.prototype.showToolbars = function (items) {
+    $(".page .header .toolbar > div").hide();
+    $.each(items, function (idv, val) {
+        $(".page .header .toolbar > div." + val).show();
+    });
+}

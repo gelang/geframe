@@ -12,6 +12,7 @@ GeLang.Layout = function (options) {
     var configured = false;
     var menuMap = {};
     var module = "";
+    var module_class = "";
     var menu = "";
     var template = "<div class=\"page\">" +
                    "<div class=\"header\">" +
@@ -40,6 +41,7 @@ GeLang.Layout = function (options) {
         selector = selector || "body";
 
         this.configure(selector);
+        this.renderToolbars(selector, options.toolbars || []);
         this.renderModules(selector, options.modules || []);
 
         var moduleChanged = [];
@@ -81,6 +83,12 @@ GeLang.Layout = function (options) {
             selected.addClass("selected");
 
             $(selector + " .page .header .brand .title").text(selected.text());
+
+            if (module_class !== selected.data("cls")) {
+                $(selector + " .page .header .brand").removeClass(module_class);
+                $(selector + " .page .header .brand").addClass(selected.data("cls"));
+                module_class = selected.data("cls");
+            }
         });
         this.onMenuChanged(function (e, data) {
             if (_this.loadMenu != undefined) {
@@ -155,10 +163,20 @@ GeLang.Layout = function (options) {
         });
     }
 
+    this.renderToolbars = function (selector, data) {
+        var html = "";
+        $.each(data, function (idx, val) {
+            var name = ((val.name == undefined) ? "" : " class=\"" + val.name + "\"");
+            html += "<div" + name + ">" + val.text + "</div>";
+        });
+        $(selector + " .page .header .toolbar").html(html);
+    }
+
     this.renderModules = function (selector, data) {
         var html = "";
         $.each(data, function (idx, val) {
-            html += "<li class=\"menu\" data-id=\"" + val.name + "\"><label>" + val.text + "</label></li>";
+            var cls = ((val.cls == undefined) ? "box" : val.cls);
+            html += "<li class=\"menu " + cls + "\" data-id=\"" + val.name + "\" data-cls=\"" + cls + "\"><label>" + val.text + "</label></li>";
             menuMap[val.name] = val.menus;
         });
         $(selector + " .page .modules").html("<ul>" + html + "</ul>");
@@ -198,12 +216,14 @@ GeLang.Layout = function (options) {
 }
 
 GeLang.Layout.prototype.loadMenu = function (selected, data) {
-    var content = $(".page .body .mainpanel .maincontent");
-    var url = GeLang.baseUrl + data.module + "/" + data.menu;
-    content.load(url, function (response, status, xhr) {
-        if (status === "success") {
-            selected.parent().children().removeClass("selected");
-            selected.addClass("selected");
-        }
-    });
+    if (data !== undefined && data.menu.length > 0) {
+        var content = $(".page .body .mainpanel .maincontent");
+        var url = GeLang.baseUrl + data.module + "/" + data.menu;
+        content.load(url, function (response, status, xhr) {
+            if (status === "success") {
+                selected.parent().children().removeClass("selected");
+                selected.addClass("selected");
+            }
+        });
+    }
 }

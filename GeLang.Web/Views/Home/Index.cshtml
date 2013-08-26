@@ -10,10 +10,15 @@
     <title>Index</title>
     <link href="~/assets/css/vendor/foundation.css" rel="stylesheet" />
     <link href="~/assets/css/gelang.min.css" rel="stylesheet" />
+    <script src="~/assets/js/vendors/modernizr.js"></script>
 </head>
 <body>
-    <div id="pnlContent"></div>
     <script src="~/assets/js/vendors/jquery-2.0.3.js" type="text/javascript"></script>
+    <script src="~/assets/js/vendors/jquery.ui.core.js"></script>
+    <script src="~/assets/js/vendors/jquery.ui.widget.js"></script>
+    <script src="~/assets/js/vendors/jquery.ui.button.js"></script>
+    <script src="~/assets/js/vendors/jquery.ui.spinner.js"></script>
+    <script src="~/assets/js/vendors/jquery.ui.datepicker.js"></script>
     <script src="~/assets/js/gelang.min.js"></script>
     <script src="~/assets/js/gelang.widget.js"></script>
     <script type="text/javascript">
@@ -21,9 +26,31 @@
             GeLang.baseUrl = "@Url.Content("~/")";
 
             var options = {
+                toolbars: [
+                    { name: "add-new", text: "Create" },
+                    { name: "edit", text: "Edit" },
+                    { name: "save", text: "Save" },
+                    { name: "cancel", text: "Cancel" },
+                    { name: "upload", text: "Upload" },
+                    { name: "download", text: "Download" },
+                    { name: "clear", text: "Clear" },
+                ],
                 modules: [
                     {
-                        name: "tmpl", text: "Template", menus: [
+                        name: "dashboard", text: "Dashboard", cls: "dashboard", menus: [
+                            { name: "dashboard1", text: "Dasboard 001" },
+                        ]
+                    },
+                    {
+                        name: "forms", text: "Form", cls: "master", menus: [
+                            { name: "contact", text: "Contact Form" },
+                            { name: "feedback", text: "Feedback Form" },
+                            { name: "register", text: "Registration Form" },
+                            { name: "invoice", text: "Invoice Form" },
+                        ]
+                    },
+                    {
+                        name: "tmpl", text: "Template", cls: "metro", menus: [
                             { name: "regis1", text: "Registration 001" },
                             { name: "regis2", text: "Registration 002" },
                             { name: "receipt", text: "Kwitansi" },
@@ -41,24 +68,11 @@
                         ]
                     },
                     {
-                        name: "module_c", text: "Module C", menus: [
-                            { name: "modc_menu_a", text: "Module C Menu A" },
-                            { name: "modc_menu_b", text: "Module C Menu B" },
-                            { name: "modc_menu_c", text: "Module C Menu C" },
-                            { name: "modc_menu_d", text: "Module C Menu D" },
-                            { name: "modc_menu_e", text: "Module C Menu E" },
+                        name: "admin", text: "Admin", cls: "admin", menus: [
+                            { name: "user", text: "User" },
+                            { name: "role", text: "Role" },
                         ]
                     },
-                    {
-                        name: "module_d", text: "Module D", menus: [
-                            { name: "modd_menu_a", text: "Module D Menu A" },
-                            { name: "modd_menu_b", text: "Module D Menu B" },
-                            { name: "modd_menu_c", text: "Module D Menu C" },
-                            { name: "modd_menu_d", text: "Module D Menu D" },
-                            { name: "modd_menu_e", text: "Module D Menu E" },
-                        ]
-                    },
-                    { name: "module_e", text: "Module E" },
                 ],
             }
 

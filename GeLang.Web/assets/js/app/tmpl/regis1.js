@@ -2,9 +2,20 @@
     var widget = new GeLang.Widget("#pnlControl", {
         title: "Registration 001",
         items: [
-            { name: "field01", text: "Field 01" },
-            { name: "field02", text: "Field 02" },
-            { name: "field03", text: "Field 03" },
+            { text: "First Name", cls: "span3" },
+            { text: "Middle Name", cls: "span2" },
+            { text: "Last Name", cls: "span3" },
+            { text: "Birth Place", cls: "span5" },
+            { text: "Birth Date", cls: "span3" },
+            { text: "Contact Name", cls: "span5" },
+            { text: "Email", cls: "span3" },
+            { text: "Product Code", cls: "span3" },
+            { text: "Product Name", cls: "span5" },
+            { text: "Address" },
+            { text: "" },
+            { text: "" },
+            { text: "" },
+            { text: "Message", type: "textarea" },
         ]
     });
     widget.render();

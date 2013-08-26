@@ -112,7 +112,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
@@ -124,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="assets\css\ajax-loader.less" />
     <Content Include="assets\css\gelang.css">
       <DependentUpon>gelang.less</DependentUpon>
     </Content>
@@ -142,6 +145,12 @@
     <Content Include="assets\css\vendor\select2.png" />
     <Content Include="assets\css\vendor\spinner.gif" />
     <Content Include="assets\font\segoe-ui.svg" />
+    <Content Include="assets\js\app\admin\role.js" />
+    <Content Include="assets\js\app\admin\user.js" />
+    <Content Include="assets\js\app\forms\contact.js" />
+    <Content Include="assets\js\app\forms\feedback.js" />
+    <Content Include="assets\js\app\forms\invoice.js" />
+    <Content Include="assets\js\app\forms\register.js" />
     <Content Include="assets\js\app\tmpl\arbkt.js" />
     <Content Include="assets\js\app\tmpl\receipt.js" />
     <Content Include="assets\js\app\tmpl\regis2.js" />
@@ -160,6 +169,14 @@
     <Content Include="assets\js\vendors\jquery-2.0.3.min.js">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
     </Content>
+    <Content Include="assets\js\vendors\jquery.ui.button.js" />
+    <Content Include="assets\js\vendors\jquery.ui.core.js" />
+    <Content Include="assets\js\vendors\jquery.ui.datepicker.js" />
+    <Content Include="assets\js\vendors\jquery.ui.spinner.js" />
+    <Content Include="assets\js\vendors\jquery.ui.widget.js" />
+    <Content Include="assets\js\vendors\jquery.validate.js" />
+    <Content Include="assets\js\vendors\modernizr.js" />
+    <Content Include="assets\js\vendors\select2.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -200,6 +217,10 @@
     <Content Include="assets\js\Copy of gelang.min.js.map">
       <DependentUpon>gelang.widget.js</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_AjaxLoader.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
