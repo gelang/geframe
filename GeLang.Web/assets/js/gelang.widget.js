@@ -26,6 +26,24 @@
         var html_widget = "<div class=\"gl-widget\">" + html_title + html + "</div>";
 
         content.html(html_widget);
+
+        // render generic behaviour
+        if (!Modernizr.inputtypes.date) {
+            $("input[type='date']").addClass("datepicker");
+        }
+        $(".spinner").spinner();
+        //$(".select2").select2();
+        $(".datepicker").removeClass('hasDatepicker').removeAttr('id').datepicker({
+            dateFormat: "dd-MM-yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            changeMonth: true,
+            changeYear: true,
+            //showOn: "button",
+            //buttonImageOnly: true
+        });
+        //$(".datepicker:not(.hasDatepicker)").datepicker();
+        //$(".datepicker").removeClass('hasDatepicker').removeAttr('id').datepicker();
     };
 
     this.generateForm = function (items, prefix) {
@@ -86,6 +104,15 @@
         switch (type) {
             case "textarea":
                 html = "<textarea name='" + item.name + "' id='" + item.name + "' " + placeHolder + required + readonly + "></textarea>";
+                break;
+            case "datepickers":
+                html = "<div class='datepicker-wrapper'><input type='date' placeholder='mm/dd/yyyy' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
+                break;
+            case "datepicker":
+                html = "<div class='datepicker-wrapper'><input type='text' class='datepicker' placeholder='dd-MMM-yyyy' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
+                break;
+            case "spinner":
+                html = "<div class='spinner-wrapper'><input type='text' class='spinner' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
                 break;
             case "buttons":
                 var items = item.items || [];

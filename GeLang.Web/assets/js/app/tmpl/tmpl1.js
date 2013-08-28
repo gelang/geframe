@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     var widget = new GeLang.Widget("#pnlControl", {
-        title: "Registration 001",
+        title: "Template 001",
         items: [
             { text: "First Name", cls: "span3" },
             { text: "Middle Name", cls: "span2" },

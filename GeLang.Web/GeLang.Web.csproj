@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -126,13 +127,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="assets\css\ajax-loader.css">
+      <DependentUpon>ajax-loader.less</DependentUpon>
+    </Content>
     <Content Include="assets\css\ajax-loader.less" />
+    <Content Include="assets\css\ajax-loader.min.css">
+      <DependentUpon>ajax-loader.less</DependentUpon>
+    </Content>
     <Content Include="assets\css\gelang.css">
       <DependentUpon>gelang.less</DependentUpon>
     </Content>
     <Content Include="assets\css\gelang.less" />
     <Content Include="assets\css\gelang.min.css">
       <DependentUpon>gelang.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\gelang.widget.css">
+      <DependentUpon>gelang.widget.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\gelang.widget.less" />
+    <Content Include="assets\css\gelang.widget.min.css">
+      <DependentUpon>gelang.widget.less</DependentUpon>
     </Content>
     <Content Include="assets\css\vendor\animate.css" />
     <Content Include="assets\css\vendor\animate.delay.css" />
@@ -144,7 +158,87 @@
     <Content Include="assets\css\vendor\select2.css" />
     <Content Include="assets\css\vendor\select2.png" />
     <Content Include="assets\css\vendor\spinner.gif" />
+    <Content Include="assets\css\vendor\themes\icon\arrowhead-right-white-24.png" />
+    <Content Include="assets\css\vendor\themes\icon\arrowhead-right-white.png" />
+    <Content Include="assets\css\vendor\themes\icon\calendar_black.png" />
+    <Content Include="assets\css\vendor\themes\icon\calendar_white.png" />
+    <Content Include="assets\css\vendor\themes\icon\ui-icons_content.png" />
+    <Content Include="assets\css\vendor\themes\icon\ui-icons_error.png" />
+    <Content Include="assets\css\vendor\themes\jquery.ui.spinner.themes.css">
+      <DependentUpon>jquery.ui.spinner.themes.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\vendor\themes\jquery.ui.spinner.themes.less" />
+    <Content Include="assets\css\vendor\themes\jquery.ui.spinner.themes.min.css">
+      <DependentUpon>jquery.ui.spinner.themes.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\vendor\themes\jquery.ui.widget.themes.css">
+      <DependentUpon>jquery.ui.widget.themes.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\vendor\themes\jquery.ui.widget.themes.less" />
+    <Content Include="assets\css\vendor\themes\jquery.ui.widget.themes.min.css">
+      <DependentUpon>jquery.ui.widget.themes.less</DependentUpon>
+    </Content>
     <Content Include="assets\font\segoe-ui.svg" />
+    <Content Include="assets\img\datatables\back_disabled.png" />
+    <Content Include="assets\img\datatables\back_enabled.png" />
+    <Content Include="assets\img\datatables\back_enabled_hover.png" />
+    <Content Include="assets\img\datatables\forward_disabled.png" />
+    <Content Include="assets\img\datatables\forward_enabled.png" />
+    <Content Include="assets\img\datatables\forward_enabled_hover.png" />
+    <Content Include="assets\img\datatables\sort_asc.png" />
+    <Content Include="assets\img\datatables\sort_asc_disabled.png" />
+    <Content Include="assets\img\datatables\sort_both.png" />
+    <Content Include="assets\img\datatables\sort_desc.png" />
+    <Content Include="assets\img\datatables\sort_desc_disabled.png" />
+    <Content Include="assets\img\icon\add-new-32.png" />
+    <Content Include="assets\img\icon\arrow-head-down-24.png" />
+    <Content Include="assets\img\icon\cancel-32.png" />
+    <Content Include="assets\img\icon\clear-32.png" />
+    <Content Include="assets\img\icon\datatable\first.png" />
+    <Content Include="assets\img\icon\datatable\last.png" />
+    <Content Include="assets\img\icon\datatable\next.png" />
+    <Content Include="assets\img\icon\datatable\prev.png" />
+    <Content Include="assets\img\icon\delete-32.png" />
+    <Content Include="assets\img\icon\download-32.png" />
+    <Content Include="assets\img\icon\edit-32.png" />
+    <Content Include="assets\img\icon\header-bar\admin-128.png" />
+    <Content Include="assets\img\icon\header-bar\admin-48.png" />
+    <Content Include="assets\img\icon\header-bar\dashboard-128.png" />
+    <Content Include="assets\img\icon\header-bar\dashboard-48.png" />
+    <Content Include="assets\img\icon\header-bar\master-128.png" />
+    <Content Include="assets\img\icon\header-bar\master-48.png" />
+    <Content Include="assets\img\icon\header-bar\monitor-128.png" />
+    <Content Include="assets\img\icon\header-bar\monitor-48.png" />
+    <Content Include="assets\img\icon\header-bar\monitoring-128.png" />
+    <Content Include="assets\img\icon\header-bar\process-128.png" />
+    <Content Include="assets\img\icon\header-bar\process-48.png" />
+    <Content Include="assets\img\icon\header-bar\report-128.png" />
+    <Content Include="assets\img\icon\header-bar\report-48.png" />
+    <Content Include="assets\img\icon\modules\admin-128.png" />
+    <Content Include="assets\img\icon\modules\admin-48.png" />
+    <Content Include="assets\img\icon\modules\books-128.png" />
+    <Content Include="assets\img\icon\modules\books-48.png" />
+    <Content Include="assets\img\icon\modules\box-128.png" />
+    <Content Include="assets\img\icon\modules\box-48.png" />
+    <Content Include="assets\img\icon\modules\dashboard-128.png" />
+    <Content Include="assets\img\icon\modules\dashboard-48.png" />
+    <Content Include="assets\img\icon\modules\master-128.png" />
+    <Content Include="assets\img\icon\modules\master-48.png" />
+    <Content Include="assets\img\icon\modules\metro-128.png" />
+    <Content Include="assets\img\icon\modules\metro-48.png" />
+    <Content Include="assets\img\icon\modules\monitor-128.png" />
+    <Content Include="assets\img\icon\modules\monitor-48.png" />
+    <Content Include="assets\img\icon\modules\monitoring-128.png" />
+    <Content Include="assets\img\icon\modules\process-128.png" />
+    <Content Include="assets\img\icon\modules\process-48.png" />
+    <Content Include="assets\img\icon\modules\report-128.png" />
+    <Content Include="assets\img\icon\modules\report-48.png" />
+    <Content Include="assets\img\icon\profile-32.png" />
+    <Content Include="assets\img\icon\save-32.png" />
+    <Content Include="assets\img\icon\settings-32.png" />
+    <Content Include="assets\img\icon\upload-32.png" />
+    <Content Include="assets\img\icon\user-profile-32.png" />
+    <Content Include="assets\js\app\admin\menu.js" />
     <Content Include="assets\js\app\admin\role.js" />
     <Content Include="assets\js\app\admin\user.js" />
     <Content Include="assets\js\app\forms\contact.js" />
@@ -152,9 +246,11 @@
     <Content Include="assets\js\app\forms\invoice.js" />
     <Content Include="assets\js\app\forms\register.js" />
     <Content Include="assets\js\app\tmpl\arbkt.js" />
+    <Content Include="assets\js\app\tmpl\tmpl4.js" />
+    <Content Include="assets\js\app\tmpl\tmpl3.js" />
     <Content Include="assets\js\app\tmpl\receipt.js" />
-    <Content Include="assets\js\app\tmpl\regis2.js" />
-    <Content Include="assets\js\app\tmpl\regis1.js" />
+    <Content Include="assets\js\app\tmpl\tmpl2.js" />
+    <Content Include="assets\js\app\tmpl\tmpl1.js" />
     <Content Include="assets\js\app\tmpl\demo1.js" />
     <Content Include="assets\js\gelang.widget.js" />
     <Content Include="assets\js\Copy of gelang.min.js">
@@ -165,6 +261,7 @@
     <Content Include="assets\js\gelang.min.js">
       <DependentUpon>gelang.js</DependentUpon>
     </Content>
+    <Content Include="assets\js\vendors\jquery-1.9.0.min.js" />
     <Content Include="assets\js\vendors\jquery-2.0.3.js" />
     <Content Include="assets\js\vendors\jquery-2.0.3.min.js">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
@@ -195,9 +292,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="assets\js\gelang.min.js.map">
       <DependentUpon>gelang.js</DependentUpon>
     </Content>
@@ -221,6 +315,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_AjaxLoader.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Secure.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

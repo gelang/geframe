@@ -17,5 +17,10 @@ namespace GeLang.Web.Controllers
         {
             return HtmlRender("pnlControl", "admin/role.js");
         }
+
+        public string Menu()
+        {
+            return HtmlRender("pnlControl", "admin/menu.js");
+        }
     }
 }

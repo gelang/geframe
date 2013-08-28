@@ -8,13 +8,14 @@ namespace GeLang.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
+        {
+            return Redirect("~/Secure#lnk/forms");
+        }
+
+        public ActionResult Secure()
         {
             return View();
         }
-
     }
 }

@@ -9,15 +9,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Index</title>
     <link href="~/assets/css/vendor/foundation.css" rel="stylesheet" />
+    <link href="~/assets/css/vendor/jquery.ui.core.css" rel="stylesheet" />
+    <link href="~/assets/css/vendor/jquery.ui.spinner.css" rel="stylesheet" />
+    <link href="~/assets/css/vendor/jquery.ui.datepicker.css" rel="stylesheet" />
+    <link href="~/assets/css/vendor/themes/jquery.ui.widget.themes.css" rel="stylesheet" />
+    <link href="~/assets/css/vendor/themes/jquery.ui.spinner.themes.css" rel="stylesheet" />
     <link href="~/assets/css/gelang.min.css" rel="stylesheet" />
+    <link href="~/assets/css/gelang.widget.min.css" rel="stylesheet" />
     <script src="~/assets/js/vendors/modernizr.js"></script>
 </head>
 <body>
     <script src="~/assets/js/vendors/jquery-2.0.3.js" type="text/javascript"></script>
     <script src="~/assets/js/vendors/jquery.ui.core.js"></script>
     <script src="~/assets/js/vendors/jquery.ui.widget.js"></script>
-    <script src="~/assets/js/vendors/jquery.ui.button.js"></script>
     <script src="~/assets/js/vendors/jquery.ui.spinner.js"></script>
+    <script src="~/assets/js/vendors/jquery.ui.button.js"></script>
     <script src="~/assets/js/vendors/jquery.ui.datepicker.js"></script>
     <script src="~/assets/js/gelang.min.js"></script>
     <script src="~/assets/js/gelang.widget.js"></script>
@@ -37,6 +43,16 @@
                 ],
                 modules: [
                     {
+                        name: "tmpl", text: "Template", cls: "metro", menus: [
+                            { name: "tmpl1", text: "Template 001" },
+                            { name: "tmpl2", text: "Template 002" },
+                            { name: "tmpl3", text: "Template 003" },
+                            { name: "tmpl4", text: "Template 004" },
+                            { name: "receipt", text: "Kwitansi" },
+                            { name: "arbkt", text: "Bank Kas Terima" },
+                        ]
+                    },
+                    {
                         name: "dashboard", text: "Dashboard", cls: "dashboard", menus: [
                             { name: "dashboard1", text: "Dasboard 001" },
                         ]
@@ -50,27 +66,10 @@
                         ]
                     },
                     {
-                        name: "tmpl", text: "Template", cls: "metro", menus: [
-                            { name: "regis1", text: "Registration 001" },
-                            { name: "regis2", text: "Registration 002" },
-                            { name: "receipt", text: "Kwitansi" },
-                            { name: "arbkt", text: "Bank Kas Terima" },
-                        ]
-                    },
-                    { name: "module_a", text: "Module A" },
-                    {
-                        name: "module_b", text: "Module B", menus: [
-                            { name: "modb_menu_a", text: "Module B Menu A" },
-                            { name: "modb_menu_b", text: "Module B Menu B" },
-                            { name: "modb_menu_c", text: "Module B Menu C" },
-                            { name: "modb_menu_d", text: "Module B Menu D" },
-                            { name: "modb_menu_e", text: "Module B Menu E" },
-                        ]
-                    },
-                    {
                         name: "admin", text: "Admin", cls: "admin", menus: [
                             { name: "user", text: "User" },
                             { name: "role", text: "Role" },
+                            { name: "menu", text: "Menu" },
                         ]
                     },
                 ],

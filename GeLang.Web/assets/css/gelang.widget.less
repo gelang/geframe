@@ -1,0 +1,290 @@
+﻿@base-color: #007acc;
+
+.gl-widget {
+    /*max-width: 800px;*/
+    > .title {
+        margin: 0;
+
+        > h3 {
+            font-weight: normal;
+            font-size: 27px;
+            padding: 0 0 8px 0;
+            margin: 0 10px 18px 0;
+            border-bottom: 1px solid lighten(@base-color, 10%);
+            color: darken(@base-color, 10%);
+        }
+    }
+
+    > .grid {
+        padding-right: 10px;
+        margin-bottom: 40px;
+
+        table {
+            width: 100%;
+        }
+    }
+
+    > .form, > .panel {
+        margin: 0;
+
+        &.filter {
+            > div {
+                display: inline-block;
+
+                > label {
+                    width: 110px;
+                    text-align: right;
+                }
+
+                > div {
+                    width: 240px;
+                    margin-left: 120px;
+                }
+            }
+        }
+
+        > div {
+            margin-top: 4px;
+            padding: 0 10px 0 0;
+            float: left;
+            width: 100%;
+
+            > label {
+                display: block;
+                line-height: 10px;
+            }
+
+            > div {
+                margin-top: -24px;
+                padding-left: 120px;
+
+                &.span {
+                    padding-left: 0px;
+                    margin-left: -4px;
+                }
+
+                > textarea {
+                    min-height: 80px;
+                }
+
+                > input[type="checkbox"] {
+                    min-height: 33px;
+                }
+
+                > .controls-wrapper {
+                    margin-right: -6px;
+
+                    > .span1, > .span2, > .span3, > .span4, > .span5, > .span6, > .span7, > .span8 {
+                        float: left;
+                        padding-right: 6px;
+                    }
+
+                    > .span2 {
+                        width: 25%;
+                    }
+
+                    > .span3 {
+                        width: 37.5%;
+                    }
+
+                    > .span4 {
+                        width: 50%;
+                    }
+
+                    > .span5 {
+                        width: 62.5%;
+                    }
+
+                    > .span6 {
+                        width: 75%;
+                    }
+
+                    > .span7 {
+                        width: 87.5%;
+                    }
+
+                    > .span8 {
+                        width: 100%;
+                    }
+                }
+
+                > .datepicker-wrapper {
+                    width: 168px;
+
+                    input[type='date'], input.datepicker {
+                        height: 33px !important;
+                        background-image: url("vendor/themes/icon/calendar_black.png");
+                        background-repeat: no-repeat;
+                        background-position: right;
+                        background-size: 30px 40px;
+                    }
+
+                    input.datepicker {
+                        float: none;
+                    }
+
+                    img.ui-datepicker-trigger {
+                        background-image: url("../img/icon/calendar_black.png");
+                        background-position: -2px -2px;
+                        background-color: #ddd;
+                        margin: -46px 0 0 136px;
+                        width: 31px;
+                        height: 31px;
+                        color: transparent;
+                        cursor: pointer;
+                        float: left;
+                    }
+
+                    button.ui-datepicker-trigger {
+                        background-image: url("../img/icon/calendar_black.png");
+                        background-position: -6px -2px;
+                        background-color: #ddd;
+                        margin: -47px 0 0 169px;
+                        padding: 0;
+                        width: 26px;
+                        height: 33px;
+                        color: transparent;
+                        cursor: pointer;
+                        float: left;
+                        border: 1px solid #ccc;
+                    }
+                }
+            }
+
+            &.span1 {
+                width: 12.5%;
+            }
+
+            &.span2 {
+                width: 25%;
+            }
+
+            &.span3 {
+                width: 37.5%;
+            }
+
+            &.span4 {
+                width: 50%;
+            }
+
+            &.span5 {
+                width: 62.5%;
+            }
+
+            &.span6 {
+                width: 75%;
+            }
+
+            &.span7 {
+                width: 87.5%;
+            }
+
+            &.span8 {
+                width: 100%;
+            }
+
+            &.full {
+                margin-right: 100%;
+            }
+        }
+
+        > .divider {
+            height: 0px;
+            margin-bottom: 18px;
+            width: 100%;
+            float: left;
+            border-bottom: 1px solid lighten(@base-color, 10%);
+        }
+
+        > .subtitle {
+            height: 32px;
+            margin-bottom: 18px;
+            width: 100%;
+            float: left;
+            border-bottom: 1px solid lighten(@base-color, 10%);
+            color: darken(@base-color, 10%);
+            font-weight: normal;
+            font-size: 20px;
+            padding: 6px 0 0 0;
+        }
+    }
+
+    .spinner-wrapper {
+        margin: 0;
+
+        .ui-spinner {
+            border: none;
+            margin: -6px -6px 8px;
+            padding: 6px;
+            width: 180px;
+            background-color: transparent;
+            height: auto !important;
+
+            .ui-spinner-input {
+                margin: 0 !important;
+                padding: 7px 20px 7px !important;
+                height: auto !important;
+                text-align: right;
+            }
+
+            .ui-spinner-button {
+                margin: 7px;
+                height: 16px;
+            }
+
+            .ui-icon-triangle-1-n, .ui-icon-triangle-1-s {
+                text-indent: -1px;
+                font-size: 12px;
+                padding-top: 2px;
+                color: darken(@base-color, 10%);
+                background-color: lighten(@base-color, 55%);
+            }
+        }
+    }
+
+    .radio-wrapper {
+        margin: 8px 0 21px;
+
+        input[type='radio'] {
+            margin: 0;
+            padding: 0;
+        }
+
+        .radio-label {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.75);
+            display: inline-block;
+            padding: 0 18px 0px 4px;
+        }
+    }
+}
+
+/* JQuery UI Themes */
+.ui-datepicker {
+    display: none;
+    padding: 3px 3px 0 3px;
+    margin-top: 2px;
+    width: 240px;
+
+    .ui-datepicker-header {
+        position: relative;
+        padding: 0;
+    }
+
+    select {
+        display: inline-block;
+        height: 26px;
+        padding: 2px;
+        width: 40%;
+
+        &.ui-datepicker-month {
+            margin-right: 1px;
+            font-size: 14px;
+        }
+
+        &.ui-datepicker-year {
+            margin-left: 1px;
+            font-size: 14px;
+        }
+    }
+}

@@ -8,19 +8,24 @@ namespace GeLang.Web.Controllers
 {
     public class TemplateController : BaseController
     {
-        public string Demo()
+        public string Tmpl1()
         {
-            return HtmlRender("pnlControl", "tmpl/demo1.js");
+            return HtmlRender("pnlControl", "tmpl/tmpl1.js");
         }
 
-        public string Regis1()
+        public string Tmpl2()
         {
-            return HtmlRender("pnlControl", "tmpl/regis1.js");
+            return HtmlRender("pnlControl", "tmpl/tmpl2.js");
         }
 
-        public string Regis2()
+        public string Tmpl3()
         {
-            return HtmlRender("pnlControl", "tmpl/regis2.js");
+            return HtmlRender("pnlControl", "tmpl/tmpl3.js");
+        }
+
+        public string Tmpl4()
+        {
+            return HtmlRender("pnlControl", "tmpl/tmpl4.js");
         }
 
         public string Receipt()

@@ -21,12 +21,12 @@
 .ui-datepicker .ui-datepicker-next {
 	position: absolute;
 	top: 2px;
-	width: 1.8em;
-	height: 1.8em;
+	width: 24px;
+	height: 24px;
 }
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
-	top: 1px;
+	top: 2px;
 }
 .ui-datepicker .ui-datepicker-prev {
 	left: 2px;
@@ -50,8 +50,8 @@
 	margin-top: -8px;
 }
 .ui-datepicker .ui-datepicker-title {
-	margin: 0 2.3em;
-	line-height: 1.8em;
+	margin: 0 26px;
+	line-height: 24px;
 	text-align: center;
 }
 .ui-datepicker .ui-datepicker-title select {
