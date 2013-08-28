@@ -313,11 +313,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_AjaxLoader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Secure.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\template.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
