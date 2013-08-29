@@ -28,6 +28,11 @@ namespace GeLang.Web.Controllers
             return HtmlRender("pnlControl", "tmpl/tmpl4.js");
         }
 
+        public string Tmpl5()
+        {
+            return HtmlRender("pnlControl", "tmpl/tmpl5.js");
+        }
+
         public string Receipt()
         {
             return HtmlRender("pnlControl", "tmpl/receipt.js");

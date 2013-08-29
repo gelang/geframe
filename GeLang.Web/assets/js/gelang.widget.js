@@ -32,7 +32,7 @@
             $("input[type='date']").addClass("datepicker");
         }
         $(".spinner").spinner();
-        //$(".select2").select2();
+        $(".select2").select2();
         $(".datepicker").removeClass('hasDatepicker').removeAttr('id').datepicker({
             dateFormat: "dd-MM-yy",
             showOtherMonths: true,
@@ -46,16 +46,17 @@
         //$(".datepicker").removeClass('hasDatepicker').removeAttr('id').datepicker();
     };
 
-    this.generateForm = function (items, prefix) {
+    this.generateForm = function (items, prefix, name) {
         var html = "";
         var self = this;
+        var name = ((name == undefined) ? "" : " name=\"" + name + "\" id=\"" + name + "\"");
 
         $.each(items || [], function (idx, item) {
             var cls = ((item.cls === undefined) ? "" : " class='" + item.cls + "'");
             html += "<div" + cls + ">" + self.generateLabel(item) + self.generateInput(item) + "</div>";
         });
 
-        return "<form class=\"form\">" + (prefix || "") + html + "</form>";
+        return "<form class=\"form\"" + name + ">" + (prefix || "") + html + "</form>";
     };
 
     this.generatePanel = function (items, prefix) {
@@ -71,17 +72,25 @@
     };
 
     this.generatePanels = function (panels) {
-        var html = "", prefix = "";
+        var html = "";
         var self = this;
 
         $.each(panels || [], function (idx, item) {
+            var prefix = "";
             if (item.title !== undefined) {
                 prefix += "<div class=\"subtitle\">" + item.title + "</div>"
             }
             else if (idx > 0) {
                 prefix += "<div class=\"divider\"></div>"
             }
-            html += self.generatePanel(item.items, prefix);
+
+            if ((item.xtype || "form") === "form") {
+                var name = item.name;
+                html += self.generateForm(item.items, prefix, name);
+            }
+            else {
+                html += self.generatePanel(item.items, prefix);
+            }
         });
 
         return html;
@@ -95,24 +104,29 @@
     };
 
     this.generateInput = function (item) {
+        var idname = ((item.name == undefined) ? "" : " \" name=\"" + item.name + "\" id=\"" + item.name + "\"");
         var placeHolder = " placeHolder=\"" + ((item.placeHolder || item.text) || "") + "\"";
         var required = ((item.required || false) ? " required=\"required\"" : "");
         var readonly = ((item.readonly || false) ? " readonly=\"readonly\"" : "");
+        var attribut = idname + placeHolder + required + readonly;
         var type = item.type || "text";
         var html = "";
 
         switch (type) {
+            case "text":
+                html = "<input type=\"text\"" + attribut + "/>";
+                break;
             case "textarea":
-                html = "<textarea name='" + item.name + "' id='" + item.name + "' " + placeHolder + required + readonly + "></textarea>";
+                html = "<textarea" + attribut + "></textarea>";
                 break;
             case "datepickers":
-                html = "<div class='datepicker-wrapper'><input type='date' placeholder='mm/dd/yyyy' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
+                html = "<div class=\"datepicker-wrapper\"><input type=\"date\" placeholder=\"dd-MMM-yyyy\"" + attribut + "/></div>";
                 break;
             case "datepicker":
-                html = "<div class='datepicker-wrapper'><input type='text' class='datepicker' placeholder='dd-MMM-yyyy' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
+                html = "<div class=\"datepicker-wrapper\"><input type=\"text\" class=\"datepicker\" placeholder=\"dd-MMM-yyyy\"" + attribut + "/></div>";
                 break;
             case "spinner":
-                html = "<div class='spinner-wrapper'><input type='text' class='spinner' name='" + item.name + "' id='" + item.name + "' " + required + "/></div>";
+                html = "<div class=\"spinner-wrapper\"><input type=\"text\" class=\"spinner\"" + attribut + "/></div>";
                 break;
             case "buttons":
                 var items = item.items || [];
@@ -123,11 +137,11 @@
                 });
                 break;
             case "select":
-                html = "<select name='" + item.name + "' id='" + item.name + "' " + placeHolder + required + readonly + ">" +
+                html = "<select" + attribut + ">" +
                        "<option>" + (item.opt_text || "[Select One]") + "</option>" + this.generateOption(item) +
                        "</select>";
             case "dropdown":
-                html = "<select name='" + item.name + "' id='" + item.name + "' " + required + ">" +
+                html = "<select" + attribut + ">" +
                        "<option>" + (item.opt_text || "[Select One]") + "</option>" + this.generateOption(item) +
                        "</select>";
                 break;
@@ -143,7 +157,7 @@
                 html = "<div class=\"panel\"></div>";
                 break;
             default:
-                html = "<input type='" + type + "' name='" + item.name + "' id='" + item.name + "'" + placeHolder + required + readonly + "/>";
+                html = "<input type=\"" + type + "\"" + idname + placeHolder + required + readonly + "/>";
                 break;
         }
 

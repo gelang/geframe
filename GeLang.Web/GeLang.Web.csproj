@@ -246,6 +246,7 @@
     <Content Include="assets\js\app\forms\invoice.js" />
     <Content Include="assets\js\app\forms\register.js" />
     <Content Include="assets\js\app\tmpl\arbkt.js" />
+    <Content Include="assets\js\app\tmpl\tmpl5.js" />
     <Content Include="assets\js\app\tmpl\tmpl4.js" />
     <Content Include="assets\js\app\tmpl\tmpl3.js" />
     <Content Include="assets\js\app\tmpl\receipt.js" />
