@@ -111,7 +111,11 @@
                 }
 
                 > .datepicker-wrapper {
-                    width: 168px;
+                    min-width: 168px;
+
+                    &.fixed {
+                        width: 168px;
+                    }
 
                     input[type='date'], input.datepicker {
                         height: 33px !important;

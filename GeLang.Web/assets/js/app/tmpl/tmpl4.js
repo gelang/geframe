@@ -9,7 +9,7 @@
             { text: "Menu Header", type: "text" },
             { text: "Menu Level", type: "spinner" },
             { text: "Menu Index", type: "spinner" },
-            { text: "Date 001", type: "datepicker" },
+            { name: "date01", text: "Date 001", type: "datepicker", cls: "fixed" },
             { text: "Menu Url" },
             { text: "Is Active", type: "checkbox" },
         ]

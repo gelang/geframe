@@ -6,7 +6,7 @@
             { text: "Middle Name", cls: "span2" },
             { text: "Last Name", cls: "span3" },
             { text: "Birth Place", cls: "span5" },
-            { text: "Birth Date", cls: "span3" },
+            { text: "Birth Date", cls: "span3", type: "datepicker" },
             { text: "Contact Name", cls: "span5" },
             { text: "Email", cls: "span3" },
             { text: "Product Code", cls: "span3" },

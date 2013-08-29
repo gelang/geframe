@@ -122,6 +122,10 @@
 }
 .gl-widget > .form > div > div > .datepicker-wrapper,
 .gl-widget > .panel > div > div > .datepicker-wrapper {
+  min-width: 168px;
+}
+.gl-widget > .form > div > div > .datepicker-wrapper.fixed,
+.gl-widget > .panel > div > div > .datepicker-wrapper.fixed {
   width: 168px;
 }
 .gl-widget > .form > div > div > .datepicker-wrapper input[type='date'],

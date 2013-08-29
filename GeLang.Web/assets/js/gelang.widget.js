@@ -104,7 +104,7 @@
     };
 
     this.generateInput = function (item) {
-        var idname = ((item.name == undefined) ? "" : " \" name=\"" + item.name + "\" id=\"" + item.name + "\"");
+        var idname = ((item.name == undefined) ? "" : " name=\"" + item.name + "\" id=\"" + item.name + "\"");
         var placeHolder = " placeHolder=\"" + ((item.placeHolder || item.text) || "") + "\"";
         var required = ((item.required || false) ? " required=\"required\"" : "");
         var readonly = ((item.readonly || false) ? " readonly=\"readonly\"" : "");
@@ -119,14 +119,13 @@
             case "textarea":
                 html = "<textarea" + attribut + "></textarea>";
                 break;
-            case "datepickers":
-                html = "<div class=\"datepicker-wrapper\"><input type=\"date\" placeholder=\"dd-MMM-yyyy\"" + attribut + "/></div>";
-                break;
             case "datepicker":
-                html = "<div class=\"datepicker-wrapper\"><input type=\"text\" class=\"datepicker\" placeholder=\"dd-MMM-yyyy\"" + attribut + "/></div>";
+                var dtpclass = " class=\"datepicker-wrapper" + ((item.cls === undefined) ? "\"" : (" " + item.cls + "\""));
+                html = "<div" + dtpclass + "><input type=\"text\" class=\"datepicker\" placeholder=\"dd-MMM-yyyy\"" + attribut + "/></div>";
                 break;
             case "spinner":
-                html = "<div class=\"spinner-wrapper\"><input type=\"text\" class=\"spinner\"" + attribut + "/></div>";
+                var dtpclass = " class=\"spinner-wrapper" + ((item.cls === undefined) ? "\"" : (" " + item.cls + "\""));
+                html = "<div" + dtpclass + "><input type=\"text\" class=\"spinner\"" + attribut + "/></div>";
                 break;
             case "buttons":
                 var items = item.items || [];
