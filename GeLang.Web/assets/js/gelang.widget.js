@@ -4,6 +4,7 @@
         var xtype = options.xtype || "form";
         var content = $(selector);
         var html = "";
+        var _this = this;
 
         switch (xtype) {
             case "form":
@@ -11,6 +12,9 @@
                 break;
             case "panel":
                 html = this.generatePanel(options.items);
+                break;
+            case "grid":
+                html = this.generateGrid(options);
                 break;
             case "panels":
                 html = this.generatePanels(options.panels);
@@ -44,6 +48,71 @@
         });
         //$(".datepicker:not(.hasDatepicker)").datepicker();
         //$(".datepicker").removeClass('hasDatepicker').removeAttr('id').datepicker();
+
+        var ajaxSettings = {
+            ajaxLoader: $(".ajax-loader"),
+            urlList: undefined,
+            urlSave: undefined,
+            urlDelete: undefined,
+            urlApprove: undefined,
+        };
+
+        var rowSettings = {
+            evtchanged: [],
+            evtselected: [],
+            isSelected: false
+        }
+
+        // setting ajax url
+        if (options.urlList != undefined) {
+            ajaxSettings.urlList = GeLang.baseUrl + options.urlList;
+        }
+
+        if (options.urlSave != undefined) {
+            ajaxSettings.urlSave = GeLang.baseUrl + options.urlSave;
+        }
+
+        if (options.urlDelete != undefined) {
+            ajaxSettings.urlDelete = GeLang.baseUrl + options.urlDelete;
+        }
+
+        if (options.urlApprove != undefined) {
+            ajaxSettings.urlApprove = GeLang.baseUrl + options.urlApprove;
+        }
+
+        if (xtype === "grid" || xtype === "grid-form") {
+            var columns = options.columns || [],
+                sortings = options.sortings || []
+
+            if (ajaxSettings.urlList != undefined) {
+                oTable = $(selector + " table").first().dataTable({
+                    bProcessing: true,
+                    bServerSide: true,
+                    sServerMethod: "POST",
+                    sPaginationType: "full_numbers",
+                    sAjaxSource: ajaxSettings.urlList,
+                    aaSorting: sortings,
+                    aoColumns: columns,
+                    fnDrawCallback: function () {
+                        $(selector + " table tbody tr").click(function (e) {
+                            var self = $(this);
+                            if (!self.hasClass("row_selected")) {
+                                self.parent().children().removeClass("row_selected");
+                                self.addClass("row_selected");
+                                if (!rowSettings.isSelected) {
+                                    _this.showToolbars(["add-new", "edit", "delete", "clear"]);
+
+                                    for (var i = 0; i < rowSettings.evtselected.length; i++) {
+                                        rowSettings.evtselected[i]({ selected: true });
+                                    }
+                                    rowSettings.isSelected = true;
+                                }
+                            }
+                        });
+                    },
+                });
+            }
+        }
     };
 
     this.generateForm = function (items, prefix, name) {
@@ -173,6 +242,31 @@
         });
 
         return html;
+    }
+
+    this.generateGrid = function (options) {
+        var columns = options.columns || [];
+        var filterHtml = "";
+        var html = "";
+        var self = this;
+
+        if (options.filters !== undefined) {
+            $.each(options.filters, function (idx, item) {
+                filterHtml += "<div>" + self.generateLabel(item) + self.generateInput(item) + "</div>";
+            });
+            filterHtml = "<form class='filter'>" + filterHtml + "</form>";
+        }
+
+        if (options.urlList === undefined) {
+            $.each(columns, function (idx, val) {
+                if (val.bVisible === undefined || val.bVisible) {
+                    sWidth = (val.sWidth == undefined) ? "" : " style=\"width:" + val.sWidth + "\"";
+                    html += "<th" + sWidth + ">" + val.sTitle || "" + "</th>"
+                }
+            });
+        }
+
+        return "<div class='gl-grid'>" + filterHtml + "<table><thead><tr>" + html + "</tr></thead><tbody></tbody></table></div>";
     }
 };
 

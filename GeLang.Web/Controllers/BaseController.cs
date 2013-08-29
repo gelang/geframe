@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeLang.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace GeLang.Web.Controllers
 {
     public class BaseController : Controller
     {
+        protected LayoutContext ctx = new LayoutContext();
+
         protected string HtmlRender(string id)
         {
             return string.Format(@"<div id=""{0}"" ></div>", id);

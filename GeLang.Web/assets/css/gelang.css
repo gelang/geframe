@@ -97,6 +97,10 @@ body :-ms-input-placeholder {
   background-image: url("../img/icon/modules/admin-128.png");
   background-position: 0 -8px;
 }
+.page .modules .menu.grid {
+  background-image: url("../img/icon/modules/grid-128.png");
+  background-position: 0 -8px;
+}
 .page .header {
   height: 46px;
   background-color: #007acc;
@@ -123,6 +127,9 @@ body :-ms-input-placeholder {
 }
 .page .header .brand.admin {
   background-image: url("../img/icon/modules/admin-48.png");
+}
+.page .header .brand.grid {
+  background-image: url("../img/icon/modules/grid-48.png");
 }
 .page .header .brand .title {
   margin: 12px 10px;

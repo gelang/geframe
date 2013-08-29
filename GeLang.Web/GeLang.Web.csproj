@@ -39,9 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -116,11 +120,15 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
+    <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LayoutContext.cs" />
+    <Compile Include="Models\Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +145,12 @@
     <Content Include="assets\css\gelang.css">
       <DependentUpon>gelang.less</DependentUpon>
     </Content>
+    <Content Include="assets\css\gelang.datatables.css">
+      <DependentUpon>gelang.datatables.less</DependentUpon>
+    </Content>
+    <Content Include="assets\css\gelang.datatables.min.css">
+      <DependentUpon>gelang.datatables.less</DependentUpon>
+    </Content>
     <Content Include="assets\css\gelang.less" />
     <Content Include="assets\css\gelang.min.css">
       <DependentUpon>gelang.less</DependentUpon>
@@ -148,6 +162,7 @@
     <Content Include="assets\css\gelang.widget.min.css">
       <DependentUpon>gelang.widget.less</DependentUpon>
     </Content>
+    <Content Include="assets\css\gelang.datatables.less" />
     <Content Include="assets\css\vendor\animate.css" />
     <Content Include="assets\css\vendor\animate.delay.css" />
     <Content Include="assets\css\vendor\foundation.css" />
@@ -241,6 +256,9 @@
     <Content Include="assets\js\app\admin\menu.js" />
     <Content Include="assets\js\app\admin\role.js" />
     <Content Include="assets\js\app\admin\user.js" />
+    <Content Include="assets\js\app\grid\menu.js" />
+    <Content Include="assets\js\app\grid\role.js" />
+    <Content Include="assets\js\app\grid\user.js" />
     <Content Include="assets\js\app\forms\contact.js" />
     <Content Include="assets\js\app\forms\feedback.js" />
     <Content Include="assets\js\app\forms\invoice.js" />
@@ -267,6 +285,7 @@
     <Content Include="assets\js\vendors\jquery-2.0.3.min.js">
       <DependentUpon>jquery-2.0.3.js</DependentUpon>
     </Content>
+    <Content Include="assets\js\vendors\jquery.dataTables.js" />
     <Content Include="assets\js\vendors\jquery.ui.button.js" />
     <Content Include="assets\js\vendors\jquery.ui.core.js" />
     <Content Include="assets\js\vendors\jquery.ui.datepicker.js" />
@@ -287,10 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\js\gelang.min.js.map">
@@ -322,6 +337,12 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\template.pubxml" />
     <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeLang.Grid\GeLang.Grid.csproj">
+      <Project>{59b2dd1e-4686-4881-88f2-c944f7269be0}</Project>
+      <Name>GeLang.Grid</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
