@@ -100,7 +100,7 @@
                                 self.parent().children().removeClass("row_selected");
                                 self.addClass("row_selected");
                                 if (!rowSettings.isSelected) {
-                                    _this.showToolbars(["add-new", "edit", "delete", "clear"]);
+                                    _this.showToolbars(["create", "edit", "delete", "clear"]);
 
                                     for (var i = 0; i < rowSettings.evtselected.length; i++) {
                                         rowSettings.evtselected[i]({ selected: true });
@@ -270,9 +270,26 @@
     }
 };
 
+GeLang.Widget.prototype.toolbars = {
+    clicked: [],
+}
+
 GeLang.Widget.prototype.showToolbars = function (items) {
+    var _this = this;
+
     $(".page .header .toolbar > div").hide();
     $.each(items, function (idv, val) {
         $(".page .header .toolbar > div." + val).show();
     });
+
+    $(".page .header .toolbar > div").on("click", function () {
+        var id = $(this).data("id");
+        for (var i = 0; i < _this.toolbars.clicked.length; i++) {
+            _this.toolbars.clicked[i](id);
+        }
+    });
+}
+
+GeLang.Widget.prototype.onToolbarClick = function (callback) {
+    this.toolbars.clicked.push(callback);
 }

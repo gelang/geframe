@@ -166,7 +166,7 @@ GeLang.Layout = function (options) {
     this.renderToolbars = function (selector, data) {
         var html = "";
         $.each(data, function (idx, val) {
-            var name = ((val.name == undefined) ? "" : " class=\"" + val.name + "\"");
+            var name = ((val.name == undefined) ? "" : " class=\"" + val.name + "\" data-id=\"" + val.name + "\"");
             html += "<div" + name + ">" + val.text + "</div>";
         });
         $(selector + " .page .header .toolbar").html(html);

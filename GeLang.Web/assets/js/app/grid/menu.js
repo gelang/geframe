@@ -25,4 +25,8 @@
         ]
     });
     widget.render();
+
+    widget.onToolbarClick(function (result) {
+        console.log(result);
+    });
 });
