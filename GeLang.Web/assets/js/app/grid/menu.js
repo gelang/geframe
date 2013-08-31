@@ -10,7 +10,7 @@
             { mData: "MenuName", sTitle: "Menu Name" },
             { mData: "MenuHeader", sTitle: "Menu Header", bVisible: false },
             { mData: "MenuIndex", sTitle: "Menu Index" },
-            { mData: "MenuIcon", sTitle: "Menu Icon" },
+            { mData: "MenuIcon", sTitle: "Menu Icon", bSortable: false },
             { mData: "MenuUrl", sTitle: "Menu Url" },
         ],
         items: [

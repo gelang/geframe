@@ -152,12 +152,6 @@
     <Content Include="assets\css\gelang.datatable.min.css">
       <DependentUpon>gelang.datatable.less</DependentUpon>
     </Content>
-    <Content Include="assets\css\gelang.datatables.css">
-      <DependentUpon>gelang.datatables.less</DependentUpon>
-    </Content>
-    <Content Include="assets\css\gelang.datatables.min.css">
-      <DependentUpon>gelang.datatables.less</DependentUpon>
-    </Content>
     <Content Include="assets\css\gelang.less" />
     <Content Include="assets\css\gelang.min.css">
       <DependentUpon>gelang.less</DependentUpon>
@@ -169,7 +163,6 @@
     <Content Include="assets\css\gelang.widget.min.css">
       <DependentUpon>gelang.widget.less</DependentUpon>
     </Content>
-    <Content Include="assets\css\gelang.datatables.less" />
     <Content Include="assets\css\vendor\animate.css" />
     <Content Include="assets\css\vendor\animate.delay.css" />
     <Content Include="assets\css\vendor\foundation.css" />
